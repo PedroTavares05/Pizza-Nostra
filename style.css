@@ -1,0 +1,553 @@
+/* GLOBAL */
+/* GOOGLE FONTS - ROBOTO */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/*ESTILIZAÇÃO GENÉRICA/GLOBAL*/
+
+/*PSEUCO CLASSE QUE CONTÉM VARIÁVEIS COM PADRÃO DE CORES*/
+    :root{
+        --main-color: #da190f;/*PADRÃO COR PRINCIPAL*/
+        --bg: #13131a;/*COR PADRÃO DE FUNDO*/
+        --bg-card: #0c0c14; /*COR PADRÃO DOS CARDS*/
+        --border-color: 0.1rem solid rgba(255, 255, 255, 0.3)/*COR PADRÃO DAS BORDAS*/
+    }
+
+/*ESTILIZAÇÃO PADRÃO DE TODO O SITE. PARA TAL, DEVEMOS 1º LIMPAR/ZERAR ALGUMAS PROPRIEDADES JÁ DEFINIDAS NO NAVEGADOR. DESSA FORMA, PODEMOS TER CONTROLE TOTAL NA ESTILIZAÇÃO*/
+
+    *{
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+
+        /*O box-sizing faz o navegador não calcular a dimensão de um elemento, ou seja, somando bordas e margens com altura e largura*/
+
+        box-sizing: border-box;
+        outline: none;/*CONTORNO*/
+        border: none;
+        text-decoration: none;/*REMOVIDO O PADRÃO PARA LINKS*/
+        text-transform: capitalize;/*PRIMEIRA LETRA MAIÚSCULA EM DESTAQUE COM TAMANHO MAIOR*/
+        transition: 0.2s linear;
+    }
+
+/*PADRÃO PARA TODOS OS ELEMENTOS QUE ESTÃO NO HTML/SITE*/
+
+    html{
+        font-size: 62.5%;
+
+        /*OVERFLOW-X: UTILIZAR O VALOR HIDDEN NA PROPRIEDADE OVERFLOW-X, QUE IRÁ OCULTAR QUALQUER CONTEÚDO, QUE ESTEJA NA HORIZONTAL, E QUE ULTRAPASSE A ÁREA VISÍVEL DO MEU ELEMENTO*/
+        overflow-x: hidden;
+
+        /*scroll-padding-top: ADICIONA UM ESPAÇO EXTRA NO TOPO DA ÁREA VISÍVEL, QUANDO ROLAR PARA ALGUM ALVO, POR EXEMPLO: QUANDO CLICAR EM UM LINK DE ÂNCORA QUEREMOS QUE ELE SUBA DEXANDO UM ESPAÇO*/
+        scroll-padding-top: 9rem;
+
+        /*scroll-behavior: COMPORTAMENTO SUAVE NA ROLAGEM DA PÁGINA QUANDO UM LINK INTERNO É CLICADO*/
+        scroll-behavior: smooth;
+    }
+
+/*ESTILIZAÇÃO DA BARRA DE ROLAGEM*/
+/*PARA ALTERAR AS CONFIGURAÇÕES PADRÃO DA BARRA DE ROLAGEM, UTILIZAREMOS ALGUNS PSEUDOS SELETORES*/
+
+/*DEFINIÇÃO DA LARGURA DA BARRA DE ROLAGEM*/
+ 
+
+/*ADIÇÃO DA TRANSPARÊNCIA DA BARRA DE ROLAGEM*/
+    html::-webkit-scrollbar-track{
+        background: transparent;
+    }
+
+/*APARÊNCIA DA BARRA DE ROLAGEM*/
+    html::-webkit-scrollbar-thumb{
+        background: #fff;
+        border-radius: 5rem;
+    }
+
+/*PADRÃO DE TODOS OS ELEMENTOS DA BODY COM UTILIZAÇÃO DA VARIÁVEL DE COR DECLARADA NA PSEUDO CLASSE ROOT*/
+    body{
+        background: var(--bg);
+    }
+
+/*DEFINIÇÃO DO PADRÃO DAS SEÇÕES*/
+    section{
+        padding: 2rem 7%;
+    }
+
+/*PADRÃO DAS CLASSES DOS TITÚLO H1*/
+    .title{
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;/*TUDO EM MAIÚSCULO*/
+        padding-bottom: 3.5rem;
+        font-size: 4rem;
+    }
+
+    .title span{
+        color: var(--main-color);
+        text-transform: uppercase;
+    }
+
+/*ESTILIZAÇÃO PADRÃO DOS LINKS COM APARÊNCIA DE BOTÃO*/
+    .btn{
+        color: #fff;
+        margin-top: 1rem;
+        display: inline-block;
+        font-size: 1.7rem;
+        background: var(--main-color);
+        padding: 0.9rem 3rem;
+        cursor: pointer;
+        border-radius: 2rem;
+    }
+
+    .btn:hover{
+        letter-spacing: 0.2rem;
+    }
+
+/*FINALIZAÇÃO DA ESTILIZAÇÃO GENÉRICA/GLOBAL*/
+
+/*INÍCIO DAS ETILIZAÇÕES ESPECÍFICAS*/
+
+/*ESTILIZAÇÃO DO HEADER/CABEÇALHO*/
+    .header{
+        background: var(--bg);
+        display: flex;
+        align-items: center;
+        
+        /*justify-content: space-between espaçamento entre todos os elementos, ocupando todo o espaço livre*/
+        justify-content: space-between;
+        padding: 1.5rem 7%;
+        border-bottom: var(--border-color);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        /*Z-INDEX - USADA PARA ORGANIZAR OS MENUS. ASSOCIADO À PROPRIEDADE POSITION: fixed, relative, absolute ou sticky*/
+        z-index: 1000;
+    }
+
+    .header .logo img{
+        height: 6.5rem;
+        border-radius: 100%;
+    }
+
+    .header .navbar a{
+        color: #fff;
+        margin: 0 1rem;
+        font-size: 1.6rem;
+    }
+
+    .header .navbar a:hover{
+        color: var(--main-color);
+        border-bottom: 0.1rem solid var(--main-color);
+        padding-bottom: 0.5rem;
+    }
+
+    .header .icons{
+        display: flex;
+        align-items: center;
+        color: #fff;
+    }
+
+    .header .icons div ion-icon{
+        cursor: pointer;
+        font-size: 2.5rem;
+        padding: 0.5rem;
+    }
+
+    .header .icons div ion-icon:hover{
+        color: var(--main-color);
+    }
+
+/*O ÍCONE DO MENU NÃO PODE ESTAR VISÍVEL NO LAYOUT DE TELA PC OU TABLET. SÓ SERÁ VISÍVEL NO LAYOUT DE TELA CELULAR*/
+    #menu-btn{
+        display: none;
+    }
+
+/*1ª SEÇÃO - HOME*/
+    .home{
+        position: relative;
+        min-height: 85vh; /*V=view, H=height (altura)*/
+        display: flex;
+        align-items: center;
+        background: url(images/home.jpg) no-repeat;
+        background-size: cover;/*cobre toda a área do background*/
+        background-position: center;
+        border-bottom: var(--border-color);
+    }
+
+/*APLICANDO COR DE MARCA DÁGUA NA IMAGEM DE FUNDO*/
+    .home::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+
+    .home .content{
+        max-width: 60rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .home .content h3{
+        color: #fff;
+        font-size: 6rem;
+        text-transform: uppercase;/*MAIÚSCULO*/
+    }
+
+    .home .content p{
+        color: #fff;
+        font-size: 2rem;
+        line-height: 1.8;/*ESPAÇAMENTO ENTRE LINHAS*/
+        font-weight: lighter;/*NEGRITO LEVE*/
+        padding: 1rem 0;
+    }
+
+/*2ª SEÇÃO - ABOUT/SOBRE*/
+    .about .row{
+        display: flex;
+        align-items: center;
+        background: var(--bg-card);
+        flex-wrap: wrap;/*CASO O CONTEÚDO UTRAPASSE A DIMENSÃO VISÍVEL DO CONTAINER, HAVERÁ UMA QUEBRA DOS ELEMENTOS*/
+        border: var(--border-color);
+    }
+
+    .about .row .image{
+        flex: 1 1 45rem;/*1 fração de aumento, 1 fração de redução dentro do limite do tamanho de 45rem*/
+    }
+
+    .about .row .image img{
+        width: 100%;
+    }
+
+    .about .row .content{
+        /*OS ELEMENTOS GANHAM DIMENSÃO DENTRO DO CONTAINER. o 1º valor é o tamanho que cresce, o 2º é o tamanho que reduz e o 3º valor é o tamanho limite para crescer ou reduzir*/
+        flex: 1 1 45rem;
+
+        padding: 2rem;
+    }
+
+    .about .row .content h3{
+        color: #fff;
+        font-size: 3rem;
+    }
+
+    .about .row .content p{
+        color: #ccc;
+        font-size: 1.6rem;
+        line-height: 1.8;
+        padding: 1rem 0;
+    }
+
+/*3ª SEÇÃO - MENU/CARDÁPIO*/
+    .menu .box-container{
+        display: grid;/*DEFINIÇÃO NO FORMATO DE GRADE*/
+
+        /*DEFINIÇÃO DAS LINHAS E COLUNAS DO GRID*/
+        /*O VALOR AUTO-FIT CRIA AUTOMATICAMENTE AS COLUNAS, CALCULANDO SE CABERÃO NO CONTAINER COM UM TAMANHO MÍNIMO E MÁXIMO EM 30REM E 1 FRAÇÃO*/
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+
+        gap: 1.5rem;/*ESPAÇO ENTRE AS COLUNAS E LINHAS*/
+    }
+
+    .menu .box-container .box{
+        padding: 5rem;
+        text-align: center;
+        border: var(--border-color);
+        background-color: var(--bg-card);
+    }
+
+    .menu .box-container .box img{
+        height: 18rem;
+        border-radius: 100%;
+    }
+
+    .menu .box-container .box h3{
+        color: #fff;
+        font-size: 2rem;
+        padding: 0.5rem 0;
+    }
+
+    .menu .box-container .box .price{
+        color: #fff;
+        font-size: 2.5rem;
+        padding: 0.5rem 0;
+    }
+    
+    .menu .box-container .box .price span{
+        font-size: 1.5rem;
+        text-decoration: line-through;/*TACHADO*/
+        font-weight: lighter;/*NEGRITO LEVE*/
+    }
+
+    .menu .box-container .box:hover{
+        background: #fff;
+    }
+
+/*UTILIZANDO OUTRO PSEUDO SELETOR QUE TODO (REPRESENTADO PELO *) O ELEMENTO FILHO (REPRESENTADO PELO SINAL >) ESTIVER DENTRO DO ELEMENTO PAI (NESSE CASO É O BOX)*/
+    .menu .box-container .box:hover > * {
+        color: black;
+    }
+
+/*4ª SEÇÃO - PRODUCTS/PROMOÇÕES*/
+    .products .box-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        gap: 1.5rem;
+    }
+
+    .products .box-container .box{
+        text-align: center;
+        border: var(--border-color);
+        padding: 2rem;
+    }
+
+    .products .box-container .box .icons a ion-icon{
+        color: #fff;
+        height: 3rem;
+        width: 3rem;
+        line-height: 3rem;
+        font-size: 1.7rem;
+        border: var(--border-color);
+        margin: 0.3rem;
+    }
+
+    .products .box-container .box .icons a ion-icon:hover{
+        background: var(--main-color);
+    }
+
+    .products .box-container .box .image{
+        padding: 2.5rem 0;
+    }
+
+    .products .box-container .box .image img{
+        height: 25rem;
+    }
+
+    .products .box-container .box .content h3{
+        color: #fff;
+        font-size: 2.5rem;
+    }
+
+    .products .box-container .box .content .stars{
+        padding: 1.5rem;
+    }
+
+    .products .box-container .box .content .stars i{
+        color: var(--main-color);
+        font-size: 1.9rem;
+    }
+
+    .products .box-container .box .content .price{
+        color: #fff;
+        font-size: 2.5rem;
+    }
+
+    .products .box-container .box .content .price span{
+        font-weight: lighter;
+        font-size: 1.5rem;
+        text-transform: lowercase;/*MINÚSCULO*/
+    }
+
+/* 5ª SEÇÃO - REVIEWS/AVALIAÇÕES */
+    .review .box-container{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        gap: 1.5rem;
+    }
+
+    .review .box-container .box{
+        border: var(--border-color);
+        text-align: center;
+        padding: 3rem 2rem;
+    }
+
+    .review .box-container .box p{
+        color: #fff;
+        font-size: 1.7rem;
+        line-height: 1.8;
+        padding: 2rem 0;
+    }
+
+    .review .box-container .box .foto-clie{
+        height: 10rem;
+        width: 10rem;
+        border-radius: 100%;
+        object-fit: cover;/*usado para melhor dimensionar dentro do container*/
+    }
+
+    .review .box-container .box h3 {
+        color: #fff;
+        font-size: 2.2rem;
+        padding: 1rem 0;
+    }
+
+    .review .box-container .box .stars i{
+        color: var(--main-color);
+        font-size: 1.7rem;
+    }
+
+/*FOOTER - RODAPÉ*/
+    .footer{
+        color: #fff;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        padding: 4rem 0;
+    }
+
+    .footer .box-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 7%;
+    }
+
+    .footer .box-container .footer-col{
+        flex: 1 1 30rem;
+        margin: 1rem;
+    }
+
+    .footer .box-container .footer-col h4{
+        text-transform: uppercase;
+        font-size: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .footer .box-container .footer-col h4 span{
+        color: var(--main-color);
+        text-transform: uppercase;
+    }
+
+    .footer .box-container .footer-col ul{
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer .box-container .footer-col ul li{
+        margin-bottom: 1rem;
+    }
+
+    .footer .box-container .footer-col ul li a{
+        color: #ccc;
+        text-decoration: none;
+        font-size: 1.6rem;
+        transition: color 0.3s;
+    }
+
+    .footer .box-container .footer-col ul li a:hover{
+        color: var(--main-color);
+    }
+
+    .footer .box-container .footer-col .social-links{
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .footer .box-container .footer-col .social-links a{
+        color: #ccc;
+        font-size: 3rem;
+        transition: color 0.3s;
+    }
+
+    .footer .footer-bottom{
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 1.6rem;
+        border-top: var(--border-color);
+        margin-top: 2rem;
+        color: #ccc;
+    }
+
+/*MEDIA QUERIE - RESPONSIVIDADE*/
+/*SÍNTAXE: @media(condição){
+              Estilos que serão aplicados caso a condição seja verdadeira
+           }
+*/
+/*PADRÃO DE TAMANHO DE TELA PC E ALGUNS TABLETS*/
+   @media(max-width: 991px){
+       html{
+           font-size: 55%;
+       }
+       .header{
+           padding: 1.5rem 2rem;
+       }
+       section{
+           padding: 2rem;
+       }
+   }
+
+/*PADRÃO DE TAMANHO DE TELA DA MAIORIA DOS CELULARES*/
+   @media(max-width: 768px){
+       #menu-btn{
+           display: inline-block;
+       }
+       .header .navbar{
+           position: absolute;
+           top: 100%;
+           right: -100%;
+           background: #fff;
+           width: 30rem;
+           height: calc(100vh - 9.5rem);
+       }
+       .header .navbar a{
+           color: var(--bg-card);
+           display: block;
+           margin: 1.5rem;
+           padding: 0.5rem;
+           font-size: 2rem;
+       }
+   }
+
+   @media print {
+    /* Remove elementos não necessários para impressão */
+        .header, .footer, .navbar{
+            display: none;
+        }
+        /* Ajuste o layout principal para impressão */
+        body {
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #000;
+            background: none; /* Remove fundos desnecessários */
+            margin: 0;
+        }
+
+        /* Garantir que o conteúdo principal use toda a largura da página */
+        main {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Remover estilos de links */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Ajustar tabelas para impressão */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        /* Evitar cortes em páginas */
+        h1, h2, h3, p, table {
+            page-break-inside: avoid;
+        }
+
+        /* Mostrar apenas o necessário */
+        .print-only {
+            display: block;
+        }
+   }
